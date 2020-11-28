@@ -56,15 +56,21 @@ while True:
             return querry
 
         if __name__ == "__main__":
-            battery = psutil.sensors_battery()
-            plugged = battery.power_plugged
-            percent = str(battery.percent)
-            plugged = "Plugged In" if plugged else "Not Plugged In"
-            # print("Battery is "+percent+'% | '+plugged)
-            if int(percent)==100 and plugged=="Plugged In":
-                print("Vicky, Please remove the charger your battery is fully charged")
-                speak("Vicky, Please remove the charger your battery is fully charged")
-                speak("Vicky, Please remove the charger your battery is fully charged")
+            try:
+                battery = psutil.sensors_battery()
+                plugged = battery.power_plugged
+                percent = str(battery.percent)
+                plugged = "Plugged In" if plugged else "Not Plugged In"
+                # print("Battery is "+percent+'% | '+plugged)
+                if int(percent)==100 and plugged=="Plugged In":
+                    print("Vicky, Please remove the charger your battery is fully charged")
+                    speak("Vicky, Please remove the charger your battery is fully charged")
+                    speak("Vicky, Please remove the charger your battery is fully charged")
+            except Exception as e:
+                index=0
+                if(index==0):
+                    print("Cannot find the battery")
+                    index=index+1
                 
             if i == 0:
                 wishme()
@@ -94,6 +100,21 @@ while True:
             elif 'made you' in querry:
                 print('I am made by you Sir Waqas powered by Vicky World Production')
                 speak('I am made by you Sir Waqas powered by Vicky World Production')
+            elif 'toss' in querry or 'tos' in querry or 'torch' in querry or 'throw' in querry:
+                toss = random.randint(0,2)
+                print(toss)
+                if(toss==1):
+                    print('Your toss is Head, I repeat Head')
+                    speak('Your toss is Head, I repeat Head')
+                elif(toss==0):
+                    print('Your toss is Tail, I repeat Tail')
+                    speak('Your toss is Tail, I repeat Tail')
+                else:
+                    print('Repeat the toss')
+                    speak('Repeat The Toss')
+
+
+                
 
             elif "sleep" in querry or "sleap" in querry:
                 speak("We set your PC to sleeping mode")
